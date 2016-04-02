@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<database>
+	<database_location>localhost:3306</database_location>
+	<database_name>Spider</database_name>
+	<database_user>root</database_user>
+	<database_password>password</database_password>
+</database>

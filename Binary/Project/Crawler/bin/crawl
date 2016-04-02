@@ -1,0 +1,7 @@
+#!/bin/bash
+cwd=$(pwd);
+pwd="$(dirname "$cwd")"
+Seed=$cwd/$1;
+Maxdepth=$2;
+crawl=$cwd/lib/crawl.jar;
+java -jar $crawl $Seed $Maxdepth

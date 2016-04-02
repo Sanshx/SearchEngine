@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Google Map Template with Geocoded Address</title>
+	
+		<style>
+		a
+		{
+			color:darkblue;
+			font-size:20px;
+			font-family:verdana;
+		}
+		a:hover
+		{
+			color:red;
+			font-size:20px;
+			font-family:verdana;
+		}
+		#hs
+{
+	top:0pt;
+	width:80pt; 
+	height:18pt;
+	text-align:center; 
+	background-color:silver; 
+	position:absolute;
+	cursor:pointer;
+	font-family:verdana;
+	font-size:19px;
+}
+#nog
+{
+	top:0pt;
+	left:90pt;
+	width:80pt;
+	height:18pt;
+	text-align:center;
+	background-color:silver;
+	position:absolute;
+	cursor:pointer;
+	font-family:verdana;
+	font-size:19px;
+}
+	</style>
+	
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+	<script type="text/javascript" src="js/demo.js"></script>	<!-- Google Maps API -->
+	<script>
+	
+	function chng()
+	{
+		document.getElementById("hs").style="top:0pt; width:80pt; height:18pt; text-align:center; background-color:silver; position:absolute; cursor:pointer; font-family:verdana; font-size:19px; border-bottom: solid 3px crimson";
+		document.getElementById("nog").style="top:0pt; left:90pt; width:80pt; height:18pt; text-align:center; background-color:silver; position:absolute; cursor:pointer; font-family:verdana; font-size:19px";
+	}
+
+	function chng2()
+	{
+		document.getElementById("nog").style="top:0pt; left:90pt; width:80pt; height:18pt; text-align:center; background-color:silver; position:absolute; cursor:pointer; font-family:verdana; font-size:19px; border-bottom: solid 3px crimson";
+		document.getElementById("hs").style="top:0pt; width:80pt; height:18pt; text-align:center; background-color:silver; position:absolute; cursor:pointer; font-family:verdana; font-size:19px";
+	}
+	
+	
+	var map;	// Google map object
+	
+	// Initialize and display a google map
+	function Init()
+	{
+		// Create a Google coordinate object for where to initially center the map
+		var latlng = new google.maps.LatLng( 28.669156, 77.453758);	//ghaziabd,India
+		
+		// Map options for how to display the Google map
+		var mapOptions = { zoom: 12, center: latlng  };
+		
+		// Show the Google map in the div with the attribute id 'map-canvas'.
+		map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	}
+	
+	// Update the Google map for the user's inputted address
+	function UpdateMap(object)
+	{
+		
+		var geocoder = new google.maps.Geocoder();    // instantiate a geocoder object
+		
+		// Get the user's inputted address
+		// var address = document.getElementById( "address" ).value;
+		
+		 
+		var id=object.id;
+		var address= document.getElementById(id).innerHTML;
+		
+	
+		// Make asynchronous call to Google geocoding API
+		geocoder.geocode( { 'address': address }, function(results, status) {
+			var addr_type = results[0].types[0];	// type of address inputted that was geocoded
+			if ( status == google.maps.GeocoderStatus.OK ) 
+				ShowLocation( results[0].geometry.location, address, addr_type );
+			else     
+				alert("Geocode was not successful for the following reason: " + status);        
+		});
+	}
+	
+	// Show the location (address) on the map.
+	function ShowLocation( latlng, address, addr_type )
+	{
+		// Center the map at the specified location
+		map.setCenter( latlng );
+		
+		// Set the zoom level according to the address level of detail the user specified
+		var zoom = 12;
+		switch ( addr_type )
+		{
+		case "administrative_area_level_1"	: zoom = 6; break;		// user specified a state
+		case "locality"						: zoom = 10; break;		// user specified a city/town
+		case "street_address"				: zoom = 15; break;		// user specified a street address
+		}
+		map.setZoom( zoom );
+		
+		// Place a Google Marker at the same location as the map center 
+		// When you hover over the marker, it will display the title
+		var marker = new google.maps.Marker( { 
+			position: latlng,     
+			map: map,      
+			title: address
+		});
+		
+		// Create an InfoWindow for the marker
+		var contentString = "" + address + "";	// HTML text to display in the InfoWindow
+		var infowindow = new google.maps.InfoWindow( { content: contentString } );
+		
+		// Set event to display the InfoWindow anchored to the marker when the marker is clicked.
+		google.maps.event.addListener( marker, 'click', function() { infowindow.open( map, marker ); });
+	}
+	
+	// Call the method 'Init()' to display the google map when the web page is displayed ( load event )
+	google.maps.event.addDomListener( window, 'load', Init );
+
+	</script>
+	<style>
+	/* style settings for Google map */
+	#map-canvas
+	{
+		width : 500px; 	/* map width */
+		height: 500px;	/* map height */
+	}
+	</style>
+</head>
+<script type="text/javascript">
+// AJAX code for city drop down
+function js()
+{
+
+	var request;
+	if(window.XMLHttpRequest)
+		{
+		request=new XMLHttpRequest();
+		}
+	else
+		{
+		request=new ActiveXObject("Microsoft.XMLHttp");
+		}
+	request.open('GET','ListCity',true);
+	request.send();
+	request.onreadystatechange=function()
+	{
+		if(request.readyState==4 && request.status==200)
+			{
+			var data=request.responseText;
+			var x=document.getElementById("cityresult");
+			x.innerHTML=data;
+			}
+	}
+	}
+	
+function getcity()
+{
+	gethospitals();
+	getNGOs();
+	$("#NGOs").hide();
+	$("#Hospitals").show();
+}
+
+function getTreatment(){
+
+	var request;
+	if(window.XMLHttpRequest) request=new XMLHttpRequest();
+	else request=new ActiveXObject("Microsoft.XMLHttp");
+		
+	request.open('GET','GetTreatments',true);
+	request.send();
+	request.onreadystatechange=function()
+	{
+		if(request.readyState==4 && request.status==200)
+			{
+			var data=request.responseText;
+			var x=document.getElementById("treatment");
+			x.innerHTML=data;
+			}
+	}
+}
+
+
+
+function gethospitals()
+{
+	var requesthosp;
+	if(window.XMLHttpRequest)
+		{
+		requesthosp=new XMLHttpRequest();
+		}
+	else
+		{
+		requesthosp=new ActiveXObject("Microsoft.XMLHttp");
+		}
+	requesthosp.open('GET','Location?city='+document.getElementById("city").value +"&type=3&treatment="+document.getElementById("treatment").value,true);
+	requesthosp.send();
+	requesthosp.onreadystatechange=function()
+	{
+		if(requesthosp.readyState==4 && requesthosp.status==200)
+			{
+			var data=requesthosp.responseText;
+			console.log(data);
+			var x=document.getElementById("Hospitals");
+			x.innerHTML=data;
+			}
+	}
+}
+function getNGOs()
+{
+	var requestngo;
+	if(window.XMLHttpRequest)
+		{
+		requestngo=new XMLHttpRequest();
+		}
+	else
+		{
+		requestngo=new ActiveXObject("Microsoft.XMLHttp");
+		}
+	requestngo.open('GET','Location?city='+document.getElementById("city").value +"&type=2&treatment="+document.getElementById("treatment").value,true);
+	requestngo.send();
+	requestngo.onreadystatechange=function()
+	{
+		if(requestngo.readyState==4 && requestngo.status==200)
+			{
+			var data=requestngo.responseText;
+			console.log(data);
+			var x=document.getElementById("NGOs");
+			x.innerHTML=data;
+			}
+	}
+}
+
+
+
+
+$(document).ready(function() {
+	  $("#hs").click(function() {
+	    $("#NGOs").hide();
+	    $("#Hospitals").show();
+	 });
+	});
+
+	$(document).ready(function() {
+	  $("#nog").click(function() {
+	    $("#Hospitals").hide();
+	    $("#NGOs").show();
+	 });
+	});
+
+</script>
+
+<body onload="js(),chng(),getTreatment();"> 
+	<div style="top:0pt; left:0pt; width:100%; height:30pt; text-align:center; font-size:40px; position:absolute">
+	<table width=100% cellpadding=10> <tr> <td align=left> Find hospitals and NGOs in your area </td><td align=right><a href="home.html"> Back to Searching </a></td> </tr> </table>
+	</div>
+
+	<div style="top:50pt; left:0pt; position:absolute">
+	<!-- Dislay Google map here -->
+	<div id='map-canvas'></div>
+	<div id="fnd" >
+		<label for="Select your city"> Select your city:</label>
+		<div id='result' style="top:430pt; left:0pt; width:40pt; height:20pt; position:absolute">
+		<button onclick="getcity()" style="width:40pt; height:20pt; background-color:black; color: white; border-radius:10px; cursor:pointer" >GO</button>
+	</div>
+	</div>
+	
+	<div>
+		<select id="treatment">
+		</select>
+	</div>
+
+	<div style="top:0pt; left:400pt; width:600pt; height:30pt; position:absolute; text-align:center">
+	<div id="hs" onclick="chng()" >Hospitals</div>
+	<div id="nog" onclick="chng2()" >NGOs</div>
+	</div>
+	
+	
+
+	<div id='cityresult'>
+	</div>
+
+	<div id='Hospitals' style="left:400pt; top:25pt; width:570pt; height:385pt; position:absolute; overflow:scroll; border:2px solid silver;  text-align:center; font-family:Times New Roman; font-size:20px; font-weight: bolder"> </div>
+	<div id='NGOs' style="left:400pt; top:25pt; width:570pt; height:385pt; position:absolute; overflow:scroll; border:2px solid silver;  text-align:center; font-family:Times New Roman; font-size:20px; font-weight: bolder"></div>
+	</div>
+
+</body>
+</html>

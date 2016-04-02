@@ -1,0 +1,58 @@
+#first
+{
+	left:0pt;
+	top:0pt;
+	width:100%;
+	height:70pt;
+	position:absolute;	
+}
+
+#second
+{
+	left:0pt;
+	top:70pt;
+	width:100%;
+	height:300pt;
+	position:absolute;
+}
+
+.tbl
+{
+	border:solid silver 2px;
+	border-radius:20px;
+}
+
+.sbmt
+{
+	width:100px;
+	height:40px;
+	text-align:center;
+	background-color:#2d2929;
+	color:white;
+	border-color:black;
+	border-radius:6px;
+	font-weight:normal;
+	font-size:18px;
+}
+
+input[type=submit]:hover
+{
+	width:100px;
+	height:40px;
+	text-align:center;
+	background-color:black;
+	color:white;
+	border-color:black;
+	border-radius:6px;
+	font-weight:normal;
+	font-weight:bolder;
+	font-size:18px;
+}
+
+.txtbx
+{
+	border:2px solid #2d2929;
+	border-radius:10px;
+	width:400px;
+	height:30px;
+}

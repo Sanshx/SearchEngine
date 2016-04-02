@@ -1,0 +1,62 @@
+.btn
+{
+	width:80px;
+	height:30px;
+	text-align:center;
+	background-color:silver;
+	color:color;
+	border-color:silver;
+	border-radius:5px;
+	font-weight:normal;
+	font-size:18px;
+}
+
+.btn:hover
+{
+	width:80px;
+	height:30px;
+	text-align:center;
+	background-color:gray;
+	color:white;
+	border-color:gray;
+	font-weight:normal;
+	font-weight:bolder;
+	font-size:18px;
+}
+
+.txtbx
+{
+	border:2px solid gray;
+	width:400px;
+	height:30px;
+	background-color:#e8e8e7;
+}
+
+.bdy
+{
+	font-family:fantasy;
+	text-decoration: oblique;
+}
+
+#lcn
+{
+	text-decoration: oblique;
+}
+
+#bt
+{
+	width:200px;
+	height:40px;
+	background-color:gray;
+	color:white;
+	font-weight:normal;
+}
+
+#bt:hover
+{
+	width:200px;
+	height:40px;
+	background-color:gray;
+	color:#e8e8e7;
+	font-weight:bolder;
+}

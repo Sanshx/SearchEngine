@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Seeds>
+
+	<Information>
+		<url>www.mdanderson.org</url>
+		<url>www.todaysdietitian.com</url>
+		<url>www.mayoclinic.org/</url>
+		<url>www.webmd.com</url>
+		<url>www.karmayog.com</url>
+		<url>www.thebanyan.org</url>
+		<url>www.medicinenet.com</url>
+		<url>www.cdc.gov</url>
+		<url>www.health.ny.gov</url>
+		<url>www.healthfinder.gov</url>
+		<url>www.kidshealth.org</url>
+		<url>www.drugs.com</url>
+	</Information>
+
+	<Hospital>
+		<url>www.india.columbiaasia.com</url>
+		<url>www.shreyahospital.in</url>
+		<url>www.sarvodayahospitalgzb.in</url>
+		<url>www.hospitalkhoj.com</url>
+		<url>www.kailashhealthcare.com</url>
+		<url>www.explorenoida.com/hospitals</url>
+		<url>www.apollohospitals.com</url>
+		<url>www.jaypeehealthcare.com</url>
+		<url>www.sgrh.com</url>
+		<url>www.fortishealthcare.com</url>
+		<url>www.icarehospital.org</url>
+		<url>www.doctorsinjaipur.com</url>
+		<url>www.tirupatieye.org</url>
+		<url>www.maxhealthcare.in</url>
+		<url>www.dhrc.in</url>
+		<url>www.cancerhospitalindia.com</url>
+		<url>www.rocklandhospitals.com</url>
+		<url>www.listbesthospitals.com</url>
+	</Hospital>
+
+	<NGO>
+		<url>www.healthycaribbean.org</url>
+		<url>www.clintonfoundation.org/our-work/by-topic/global-health</url>
+		<url>www.sharddharehabilitationfoundation.org</url>
+		<url>www.avert.org</url>
+		<url>www.childheartfoundation.org</url>
+		<url>www.sapnaindia.org</url>
+		<url>www.cancersupport.aarogya.com</url>
+		<url>www.canceraidsociety.org</url>
+		<url>www.cansupport.org</url>
+		<url>www.indiancancersocietydelhi.in</url>
+		<url>www.vcarecancer.org</url>
+		<url>www.saathii.org</url>
+		<url>www.desiresociety.org</url>
+		<url>www.shafahome.org</url>
+		<url>www.mamtafoundation.org.in</url>
+		<url>www.arpansevasansthan.org/hivaids.html</url>
+		<url>www.worldvision.in</url>
+		<url>www.aravind.org</url>
+		<url>www.udayfoundationindia.org</url>
+	</NGO>
+
+	
+</Seeds>
